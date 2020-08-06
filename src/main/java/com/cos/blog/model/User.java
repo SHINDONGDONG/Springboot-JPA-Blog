@@ -21,8 +21,8 @@ import lombok.NoArgsConstructor;
 import javax.*;
 //ORM ->JAVA (다른언어들 object 를 테이블로 맵핑해주는것)
 
-@Data
-@NoArgsConstructor
+@Data //데이터가 오고가는
+@NoArgsConstructor 
 @AllArgsConstructor
 @Builder //빌더 패턴
 //@DynamicInsert //insert 시에 null인 필드는제외시켜준다.
