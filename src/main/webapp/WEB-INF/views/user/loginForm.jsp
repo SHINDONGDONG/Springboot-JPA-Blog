@@ -17,4 +17,5 @@
 		<button type="submit" class="btn btn-primary">로그인</button>
 	</form>
 </div>
+	<script src="/blog/js/user.js"></script>
 <%@ include file="../layout/footer.jsp"%>
