@@ -6,7 +6,7 @@
 	},
 	
 	save:function(){
-		alert('user의 save 함수 호출됨');
+		alert('user의 save 함수 호출됨aa');
 	}
 }
 
