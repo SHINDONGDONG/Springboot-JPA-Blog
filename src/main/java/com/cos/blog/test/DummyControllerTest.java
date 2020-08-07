@@ -5,11 +5,13 @@ import java.util.function.Supplier;
 
 import org.hibernate.annotations.SortType;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,10 +32,24 @@ public class DummyControllerTest {
 	//http://localhost:8000/blog/dummy/join(요청)
 	//http:의 body에 username,password,email 데이터를 가지고 요청
 	
+	@DeleteMapping("/dummy/user/{id}")
+	public String delete(@PathVariable int id) {
+		try {
+			userRepository.deleteById(id);
+		}catch(EmptyResultDataAccessException e) {
+			return "삭제에 실패하여습니다 해당하는 데이터가 없습니다";
+		}
+		
+		return "삭제 되었습니다" + id ;
+	}
+	
+	
+	//save함수는 아이디를 전달하지 않으면 insert해주고
+	//save함수는 아이디를 전달하면  해다id에 대한 데이터가 없으면 insert해주고
+	//save함수는 아이디를 전달하면  해다id에 대한 데이터가 있으면 update해주고
 	
 	//localhost:8000/blog/dummy/user/3
-	
-	
+	//email,password
 	@Transactional
 	@PutMapping("/dummy/user/{id}")
 	public User updateUser(@PathVariable int id,@RequestBody User requestUser) {
@@ -42,14 +58,15 @@ public class DummyControllerTest {
 		System.out.println("email : " +requestUser.getEmail());
 		
 		User user = userRepository.findById(id).orElseThrow(()->{
-			return new IllegalArgumentException("수정에 실패햇습니다.ㅇ");
+			return new IllegalArgumentException("수정에 실패.");
 		});
 		user.setPassword(requestUser.getPassword());
 		user.setEmail(requestUser.getEmail());
-		requestUser.setId(id);
 		
-		//userRepository.save(requestUser);
-		return null;
+		
+		//더티체킹
+//		userRepository.save(user);
+		return user;
 	}
 	
 	
