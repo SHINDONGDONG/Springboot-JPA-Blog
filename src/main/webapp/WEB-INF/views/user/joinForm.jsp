@@ -5,13 +5,16 @@
 <div class="container">
 	<form>
 		<div class="form-group">
-			<label for="username">username:</label> <input type="text" class="form-control" placeholder="Enter username" id="username">
+			<label for="username">username:</label> 
+			<input type="text" class="form-control" placeholder="Enter username" id="username">
 		</div>
 		<div class="form-group">
-			<label for="email">email:</label> <input type="email" class="form-control" placeholder="Enter Email" id="email">
+			<label for="password">Password:</label> 
+			<input type="password" class="form-control" placeholder="Enter password" id="password">
 		</div>
 		<div class="form-group">
-			<label for="password">Password:</label> <input type="password" class="form-control" placeholder="Enter password" id="password">
+			<label for="email">email:</label> 
+			<input type="email" class="form-control" placeholder="Enter Email" id="email">
 		</div>
 	</form>
 	<button id="btn-save" class="btn btn-primary">회원가입 완료</button>
